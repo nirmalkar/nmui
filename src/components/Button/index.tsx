@@ -1,9 +1,9 @@
 import React from 'react'
 import '../../style/style.css'
 interface ButtonProps {
-  name?: string
+  children: React.ReactNode
 }
 
-export const Button: React.FC<ButtonProps> = ({ name }) => {
-  return <button className="btn-primary">{name}</button>
+export const Button: React.FC<ButtonProps> = ({ children }) => {
+  return <button className="btn-primary">{children}</button>
 }
