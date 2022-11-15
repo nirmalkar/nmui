@@ -1,8 +1,9 @@
 name: '🚀 release'
 
 on:
-  release:
-    types: [published]
+  # release:
+  #   types: [published]
+  push:
 
 jobs:
   release:
@@ -14,10 +15,13 @@ jobs:
       - name: 🟢 node
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: '16.x'
           registry-url: https://registry.npmjs.org
-      - name: 🚀 publish
-        run: npm publish --access public
-        working-directory: nmui
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Installing packages
+        run: npm ci
+      - name: Building package
+        run: npm run build
+      # - name: 🚀 publish
+      #   run: npm publish --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
